@@ -21,7 +21,7 @@ function setup() {
   balloon.addAnimation("hotAirBalloon",balloonImage1);
   balloon.scale=0.5;
 
-  var balloonHeight=database.ref('balloon/height');
+  var balloonHeight=database.ref('Projeto35/balon/height');
   balloonHeight.on("value",readHeight, showError);
 
 
@@ -60,34 +60,18 @@ function draw() {
 }
 
  function updateHeight(x,y){
-   database.ref('balloon/height').set({
+   database.ref('Projeto35/balon/height').set({
      'x': height.x + x ,
      'y': height.y + y
    })
  }
 
+function readHeight(data){
+  height = data.val();
+  balloon.x = height.x;
+  balloon.y = height.y;
+}
 
-//ESCOLHA A FUNÇÃO DE READHEIGHT CORRETA
-// function readHeight(data){
-//   balloon.x = height.x;
-//   balloon.y = height.y;
-// }
-
-// function readHeight(data){
-//   height = data.val();
-//   balloon.x = height.x;
-//   balloon.y = height.y;
-// }
-
-// function readHeight(data){
-//   height = data.val();
-// }
-
-// function readHeight(){
-//   height = val();
-//   balloon.x = height.x;
-//   balloon.y = height.y;
-// }
 
 function showError(){
   console.log("Erro ao escrever no banco de dados");
